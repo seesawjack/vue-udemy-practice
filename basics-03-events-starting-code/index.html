@@ -20,14 +20,17 @@
       <h2>Events in Action</h2>
       <button @click="add(8)">Add</button>
       <button @click="menus(7)">Remove</button>
-      <p v-once>First Result:{{counter}}</p>
+      <!-- <p v-once>First Result:{{counter}}</p> -->
       <p>Result: {{ counter }}</p>
-      <input type="text" v-on:input="addName($event,'Jack')" @keyup.enter="confirmNameInput">
-      <p>Your name is:{{confirmName}}</p>
-      <form action="post" @submit.prevent="send">
+      <!-- <input type="text" v-bind:value="name" v-on:input="addName($event,'Jack')" @keyup.enter="confirmNameInput">
+      <button @click="resetInput">Rest Input</button> -->
+      <input type="text" v-model="name">
+      <button @click="resetInput">Rest Input</button>
+      <p>Your name is:{{name}}</p>
+      <!-- <form action="post" @submit.prevent="send">
         <input type="text">
         <button>sign in</button>
-      </form>
+      </form> -->
     </section>
   </body>
 </html>
