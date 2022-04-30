@@ -2,9 +2,17 @@ const app = Vue.createApp({
   data() {
     return {
       counter: 20,
-      name:"",
+      name: " ",
       confirmName:""
     };
+  },
+  computed:{
+    fullName(){
+      if(this.name === " "){
+        return " "
+      }
+      return this.name+" "+"Jack"
+    }
   },
   methods:{
     confirmNameInput(){
@@ -23,7 +31,7 @@ const app = Vue.createApp({
       alert("you send")
     },
     resetInput(){
-      this.name= ""
+      this.name= " "
     }
   }
 });
