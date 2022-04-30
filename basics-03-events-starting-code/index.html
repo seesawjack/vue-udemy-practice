@@ -19,7 +19,8 @@
     <section id="events">
       <h2>Events in Action</h2>
       <button @click="add(8)">Add</button>
-      <button @click.right="menus(7)">Remove</button>
+      <button @click="menus(7)">Remove</button>
+      <p v-once>First Result:{{counter}}</p>
       <p>Result: {{ counter }}</p>
       <input type="text" v-on:input="addName($event,'Jack')" @keyup.enter="confirmNameInput">
       <p>Your name is:{{confirmName}}</p>
