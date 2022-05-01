@@ -25,8 +25,9 @@
       <!-- <input type="text" v-bind:value="name" v-on:input="addName($event,'Jack')" @keyup.enter="confirmNameInput">
       <button @click="resetInput">Rest Input</button> -->
       <input type="text" v-model="name">
+      <input type="text" v-model="lastName">
       <button @click="resetInput">Rest Input</button>
-      <p>Your name is:{{fullName}}</p>
+      <p>Your name is:{{fullname}}</p>
       <!-- <form action="post" @submit.prevent="send">
         <input type="text">
         <button>sign in</button>
