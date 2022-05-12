@@ -14,13 +14,14 @@
   </head>
   <body>
     <header>
-      <h1>Vue Behind The Scenes</h1>
+      <h1>FriendList</h1>
     </header>
     <section id="app">
-      <h2>How Vue Works</h2>
-      <input type="text" ref="userText">
-      <button @click="setText">Set Text</button>
-      <p>{{ message }}</p>
+      <ul>
+        <friend-contact></friend-contact>
+        <friend-contact></friend-contact>
+        <friend-contact></friend-contact>
+      </ul>
     </section>
   </body>
 </html>
