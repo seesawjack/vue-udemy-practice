@@ -5,17 +5,19 @@
       </header>
        <ul>
             <friend-contact
-                name="Jack Olin"
-                phone-number="0123 456 789"
-                email-address="Jack@losthost.com"
-                is-favorite="1"
+                v-for="friend in friends"
+                :key="friend.id"
+                :name="friend.name"
+                :phone-number="friend.phone"
+                :email-address="friend.email"
+                :is-favorite="true"
             ></friend-contact>
-            <friend-contact
+            <!-- <friend-contact
                 name="John Awe"
                 phone-number="0789 456 123"
                 email-address="John@losthost.com"
-                is-favorite="0"
-            ></friend-contact>
+                :is-favorite="false"
+            ></friend-contact> -->
        </ul>
     </section>
 </template>
