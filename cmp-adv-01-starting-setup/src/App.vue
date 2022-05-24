@@ -5,7 +5,9 @@
     <button @click=" setSelectedComponent('manage-goals')">Manage Goals</button>
     <!-- <active-goals v-if="selectedComponent === 'active-goals'"></active-goals>
     <manage-goals v-if="selectedComponent === 'manage-goals'"></manage-goals> -->
-    <component :is="selectedComponent"></component>
+    <keep-alive>
+      <component :is="selectedComponent"></component>
+    </keep-alive>
     <!-- <badge-list></badge-list>
     <user-info
       :full-name="activeUser.name"
@@ -22,7 +24,7 @@
 </template>
 
 <script>
-import TheHeader from './components/TheHeader.vue';
+import TheHeader from './components/layout/TheHeader.vue';
 // import BadgeList from './components/BadgeList.vue';
 // import UserInfo from './components/UserInfo.vue';
 // import CourseGoals from './components/CourseGoals.vue'
