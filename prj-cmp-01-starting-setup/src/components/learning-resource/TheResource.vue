@@ -5,7 +5,9 @@
         <base-button @click="setSelectedTab('add-resource')"
         :mode="addResButtonMode">Add Resource</base-button>
     </base-card>
-    <component :is="selectedTab"></component>
+    <keep-alive>
+        <component :is="selectedTab"></component>
+    </keep-alive>
 </template>
 
 <script>
@@ -37,7 +39,8 @@ import AddResource from './AddResource.vue'
      },
      provide(){
          return {
-             resources:this.storedResources
+             resources: this.storedResources,
+             addResource: this.addResource
          }
      },
      computed:{
@@ -51,6 +54,16 @@ import AddResource from './AddResource.vue'
      methods:{
          setSelectedTab(tab){
              this.selectedTab = tab;
+         },
+         addResource(title,description,url){
+             const newResource ={
+                 id:new Date().toISOString(),
+                 title:title,
+                 description:description,
+                 link:url
+             }
+             this.storedResources.unshift(newResource);
+             this.selectedTab ='stored-resources';
          }
      }
  }
