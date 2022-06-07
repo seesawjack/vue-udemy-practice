@@ -2,12 +2,19 @@ import { createApp } from 'vue';
 import { createRouter,createWebHistory } from 'vue-router';
 
 import App from './App.vue';
+import TeamsList from './components/teams/TeamsList.vue';
+import UsersList from './components/users/UsersList.vue'
 
 const router = createRouter({
     history:createWebHistory(),
-    routes:[]
+    routes:[
+        {path:'/teams',component:TeamsList}, //our-domain.com/teams => TeamsList
+        {path:'/users',component:UsersList}, //our-domain.com/users => UsersList
+    ],
+    linkActiveClass:'active'
 })
 
-const app = createApp(App)
+const app = createApp(App);
+app.use(router)
 
 app.mount('#app');
