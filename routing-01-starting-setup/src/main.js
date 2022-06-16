@@ -34,7 +34,14 @@ const router = createRouter({
         }, //our-domain.com/users => UsersList
         {path:'/:notFound(.*)',component:NotFound} //若使用者在網址列輸入無效的內容，則可以透過'/:名稱自訂(.*)'重定向到指定的component
     ],
-    linkActiveClass:'active'
+    linkActiveClass:'active',
+    scrollBehavior(to,from,savedPosition){
+        console.log(to,from,savedPosition)
+        if(savedPosition){
+            return savedPosition
+        }
+        return{left:0,top:0}
+    }
 })
 
 const app = createApp(App);
