@@ -35,15 +35,19 @@ const router = createRouter({
         {path:'/:notFound(.*)',component:NotFound} //若使用者在網址列輸入無效的內容，則可以透過'/:名稱自訂(.*)'重定向到指定的component
     ],
     linkActiveClass:'active',
-    scrollBehavior(to,from,savedPosition){
-        console.log(to,from,savedPosition)
+    scrollBehavior(_,_2,savedPosition){   //避免跟下面的to from 混淆
+        // console.log(to,from,savedPosition)
         if(savedPosition){
             return savedPosition
         }
         return{left:0,top:0}
     }
 })
-
+router.beforeEach(function(to,from,next){
+    console.log('Global beforeEach');
+    console.log(to,from);
+    next();
+})
 const app = createApp(App);
 app.use(router)
 
