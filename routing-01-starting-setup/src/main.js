@@ -30,6 +30,11 @@ const router = createRouter({
             components:{
                 default:UsersList,
                 footer:UsersFooter
+            },
+            beforeEnter(to,from,next){
+                console.log('Users beforeEnter')
+                console.log(to,from,next)
+                next()
             }
         }, //our-domain.com/users => UsersList
         {path:'/:notFound(.*)',component:NotFound} //若使用者在網址列輸入無效的內容，則可以透過'/:名稱自訂(.*)'重定向到指定的component
