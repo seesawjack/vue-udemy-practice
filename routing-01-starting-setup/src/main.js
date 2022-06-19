@@ -53,6 +53,12 @@ router.beforeEach(function(to,from,next){
     console.log(to,from);
     next();
 })
+
+router.afterEach(function(to,from){    //無法在這邊控制用戶看到的內容，只能記錄或傳送數據等等
+    console.log('Global afterEach');
+    console.log(to,from)
+})
+
 const app = createApp(App);
 app.use(router)
 
