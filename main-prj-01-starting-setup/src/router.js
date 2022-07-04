@@ -17,11 +17,11 @@ const router = createRouter({
             path: '/coaches/:id', 
             component: CoachDetail , 
             children:[
-                {path: '/contact', components:ContactCoach}  //coaches/id/contact
+                {path: 'contact', component:ContactCoach}  //coaches/id/contact
             ]
         },
         {path: '/register', component:CoachRegistration},
-        {path: '/request', component:RequestsReceived},
+        {path: '/requests', component:RequestsReceived},
         {path: '/:notFound(.*)',component:NotFound}
 
     ],
