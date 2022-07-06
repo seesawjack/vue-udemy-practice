@@ -1,5 +1,6 @@
 <template>
     <button @click="addOne">Add 3</button>
+    <p>git test</p>
 </template>
 
 <script>
