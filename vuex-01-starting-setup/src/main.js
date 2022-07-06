@@ -7,12 +7,14 @@ const store = createStore({
     state(){
         return{
             counter:0,
-
         }
     },
     mutations:{
         increment(state){
-            state.counter+=3
+            state.counter = state.counter +3;
+        },
+        increase(state, payload){
+            state.counter = state.counter + payload.value;
         }
     }
 });

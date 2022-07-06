@@ -4,9 +4,9 @@
 
 <script>
 export default {
-    computed:{
+   methods:{
         addOne(){
-            this.$store.commit('increment');
+           this.$store.commit('increment');
         }
     }
 }
