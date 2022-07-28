@@ -15,7 +15,7 @@ const store = createStore({
         }
     },
     mutations: rootMutations,
-    actions:rootActions,
+    actions: rootActions,
     getters: rootGetters
 });
 
