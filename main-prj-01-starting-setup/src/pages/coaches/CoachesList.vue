@@ -1,4 +1,7 @@
 <template>
+    <base-dialog :show="!!error" title="錯誤發生" @close="handleError">
+        <p>{{ error }}</p>
+    </base-dialog>
     <section>
        <coach-filter @change-filter="setFilters"></coach-filter>
     </section>
@@ -78,8 +81,15 @@ export default {
         },
         async loadCoaches(){
             this.isLoading = true;
-            await this.$store.dispatch('coaches/loadCoaches');
+            try{
+                await this.$store.dispatch('coaches/loadCoaches');
+            }catch(error){
+                this.error = error.message || '發生錯誤'
+            }
             this.isLoading = false;
+        },
+        handleError(){
+            this.error = null
         }
     }
 }
