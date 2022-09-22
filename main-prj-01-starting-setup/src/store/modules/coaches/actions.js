@@ -26,7 +26,7 @@ export default {
         if(!payload.forceRefresh && !context.getters.shouldUpdate){
             return;
         }
-        const response = await fetch(`https://vue-http-5cc0d-default-rtdb.firebaseio.com/coaches/.json`);
+        const response = await fetch(`https://vue-http-5cc0d-default-rtdb.firebaseio.com/coaches.json`);
         const responseData = await response.json();
 
         if(!response.ok){
