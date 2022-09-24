@@ -3,11 +3,11 @@
         <form @submit.prevent="submitForm">
             <div class="form-control">
                 <label for="email">Email</label>
-                <input type="email" id="email" v-model.trim="password">
+                <input type="email" id="email" v-model.trim="email">
             </div>
             <div class="form-control">
                 <label for="password">password</label>
-                <input type="password" id="password">
+                <input type="password" id="password" v-model.trim="password">
             </div>
             <p v-if="!formIsValid">請輸入有效信箱及密碼(密碼長度至少６個字)</p>
             <base-button>{{ submitButtonCaption }}</base-button>
@@ -52,6 +52,15 @@ export default {
             ){
                 this.formIsValid = false;
                 return;
+            }
+
+            if(this.mode === 'login'){
+                //...
+            }else{
+                this.$store.dispatch('signup',{
+                    email:this.email,
+                    password:this.password
+                })
             }
         },
         switchAuthMode(){
