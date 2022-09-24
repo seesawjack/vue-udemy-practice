@@ -1,19 +1,27 @@
 <template>
-    <base-card>
-        <form @submit.prevent="submitForm">
-            <div class="form-control">
-                <label for="email">Email</label>
-                <input type="email" id="email" v-model.trim="email">
-            </div>
-            <div class="form-control">
-                <label for="password">password</label>
-                <input type="password" id="password" v-model.trim="password">
-            </div>
-            <p v-if="!formIsValid">請輸入有效信箱及密碼(密碼長度至少６個字)</p>
-            <base-button>{{ submitButtonCaption }}</base-button>
-            <base-button type="button" mode="flat" @click="switchAuthMode">{{ switchModeButtonCaption }}</base-button>
-        </form>
-    </base-card>
+    <div>
+        <base-dialog :show="!!error" title="發生錯誤" @close="handleError">
+            <p>{{ error }}</p>
+        </base-dialog>
+        <base-dialog :show="isLoading" title="認證中..." fixed>
+            <base-spinner></base-spinner>
+        </base-dialog>
+        <base-card>
+            <form @submit.prevent="submitForm">
+                <div class="form-control">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" v-model.trim="email">
+                </div>
+                <div class="form-control">
+                    <label for="password">password</label>
+                    <input type="password" id="password" v-model.trim="password">
+                </div>
+                <p v-if="!formIsValid">請輸入有效信箱及密碼(密碼長度至少６個字)</p>
+                <base-button>{{ submitButtonCaption }}</base-button>
+                <base-button type="button" mode="flat" @click="switchAuthMode">{{ switchModeButtonCaption }}</base-button>
+            </form>
+        </base-card>
+    </div>
 </template>
 
 <script>
@@ -23,7 +31,9 @@ export default {
             email:'',
             password:'',
             formIsValid:true,
-            mode:'login'
+            mode:'login',
+            isLoading:false,
+            error:null
         }
     },
     computed:{
@@ -43,7 +53,7 @@ export default {
         }
     },
     methods:{
-        submitForm(){
+        async submitForm(){
             this.formIsValid = true;
             if(
                 this.email === '' ||
@@ -53,15 +63,21 @@ export default {
                 this.formIsValid = false;
                 return;
             }
-
-            if(this.mode === 'login'){
+            this.isLoading = true;
+            try{
+                 if(this.mode === 'login'){
                 //...
-            }else{
-                this.$store.dispatch('signup',{
-                    email:this.email,
-                    password:this.password
-                })
+                }else{
+                    await this.$store.dispatch('signup',{
+                        email:this.email,
+                        password:this.password
+                    })
+                }
+            }catch(err){
+                this.error = err.message || '認證失敗，請稍後再試'
             }
+           
+            this.isLoading  = false;
         },
         switchAuthMode(){
             if(this.mode === 'login'){
@@ -69,6 +85,9 @@ export default {
             }else{
                 this.mode = 'login'
             }
+        },
+        handleError(){
+            this.error = null
         }
     }
 }

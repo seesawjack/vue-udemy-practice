@@ -13,7 +13,7 @@ export default {
         })
         const responseData = await response.json();
         if(!response.ok){
-            const error =new Error(responseData.message || 'Failed to authenticate.');
+            const error =new Error(responseData.message || '認證失敗...');
             throw error
         }
         console.log(responseData)
